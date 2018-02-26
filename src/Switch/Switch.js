@@ -26,8 +26,7 @@ export const styles = theme => ({
     transition: theme.transitions.create(['opacity', 'background-color'], {
       duration: theme.transitions.duration.shortest,
     }),
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
+    backgroundColor: theme.palette.text.secondary,
     opacity: theme.palette.type === 'light' ? 0.38 : 0.3,
   },
   icon: {
@@ -43,7 +42,7 @@ export const styles = theme => ({
   // For SwitchBase
   default: {
     zIndex: 1,
-    color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
+    color: theme.palette.text.secondary,
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -67,10 +66,9 @@ export const styles = theme => ({
     },
   },
   disabled: {
-    color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+    color: theme.palette.action.disabled,
     '& + $bar': {
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
+      backgroundColor: theme.palette.action.disabled,
       opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
     },
     '& $icon': {
