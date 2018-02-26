@@ -6,7 +6,7 @@ import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
 
-export const styles = {
+export const styles = theme => ({
   root: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -23,10 +23,20 @@ export const styles = {
     margin: 0,
     padding: 0,
   },
-  default: {},
+  default: {
+    color: theme.palette.text.secondary,
+  },
   checked: {},
-  disabled: {},
-};
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
+  colorPrimary: {
+    color: theme.palette.primary.main,
+  },
+  colorPecondary: {
+    color: theme.palette.secondary.main,
+  },
+});
 
 /**
  * @ignore - internal component.
@@ -68,6 +78,7 @@ class SwitchBase extends React.Component {
       checkedIcon,
       classes,
       className: classNameProp,
+      color,
       disabled: disabledProp,
       icon: iconProp,
       id,
@@ -91,10 +102,12 @@ class SwitchBase extends React.Component {
     }
 
     const checked = this.isControlled ? checkedProp : this.state.checked;
-    const className = classNames(classes.root, classes.default, classNameProp, {
+    const className = classNames(classes.root, classes.default, {
+      [classes.colorPrimary]: color === 'primary',
+      [classes.colorSecondary]: color === 'secondary',
       [classes.checked]: checked,
       [classes.disabled]: disabled,
-    });
+    }, classNameProp);
 
     const icon = checked ? checkedIcon : iconProp;
 
@@ -148,6 +161,10 @@ SwitchBase.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * @ignore
    */
@@ -211,6 +228,7 @@ SwitchBase.propTypes = {
 
 SwitchBase.defaultProps = {
   checkedIcon: <CheckBoxIcon />,
+  color: 'secondary',
   disableRipple: false,
   icon: <CheckBoxOutlineBlankIcon />,
   type: 'checkbox',

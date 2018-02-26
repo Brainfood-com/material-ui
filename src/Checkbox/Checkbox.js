@@ -6,36 +6,21 @@ import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckB
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
-  default: {
-    color: theme.palette.text.secondary,
-  },
+  root: {},
   checked: {},
-  checkedPrimary: {
-    color: theme.palette.primary.main,
-  },
-  checkedSecondary: {
-    color: theme.palette.secondary.main,
-  },
-  disabled: {
-    color: theme.palette.action.disabled,
-  },
+  default: {},
+  colorPrimary: {},
+  colorSecondary: {},
+  disabled: {},
 });
 
 function Checkbox(props) {
-  const { checkedIcon, classes, color, icon, indeterminate, indeterminateIcon, ...other } = props;
-  const checkedClass = classNames(classes.checked, {
-    [classes.checkedPrimary]: color === 'primary',
-    [classes.checkedSecondary]: color === 'secondary',
-  });
+  const { checkedIcon, classes, icon, indeterminate, indeterminateIcon, ...other } = props;
 
   return (
     <SwitchBase
       checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
-      classes={{
-        default: classes.default,
-        checked: checkedClass,
-        disabled: classes.disabled,
-      }}
+      classes={classes}
       icon={indeterminate ? indeterminateIcon : icon}
       {...other}
     />

@@ -42,7 +42,6 @@ export const styles = theme => ({
   // For SwitchBase
   default: {
     zIndex: 1,
-    color: theme.palette.text.secondary,
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -53,20 +52,17 @@ export const styles = theme => ({
       opacity: 0.5,
     },
   },
-  checkedPrimary: {
-    color: theme.palette.primary.main,
+  colorPrimary: {
     '& + $bar': {
       backgroundColor: theme.palette.primary.main,
     },
   },
-  checkedSecondary: {
-    color: theme.palette.secondary.main,
+  colorSecondary: {
     '& + $bar': {
       backgroundColor: theme.palette.secondary.main,
     },
   },
   disabled: {
-    color: theme.palette.action.disabled,
     '& + $bar': {
       backgroundColor: theme.palette.action.disabled,
       opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
@@ -78,21 +74,19 @@ export const styles = theme => ({
 });
 
 function Switch(props) {
-  const { classes, className, color, ...other } = props;
+  const { classes, className, ...other } = props;
   const icon = <span className={classes.icon} />;
   const checkedIcon = <span className={classNames(classes.icon, classes.iconChecked)} />;
-  const checkedClass = classNames(classes.checked, {
-    [classes.checkedPrimary]: color === 'primary',
-    [classes.checkedSecondary]: color === 'secondary',
-  });
 
   return (
-    <span className={classNames(classes.root, className)}>
+    <span className={classNames(classes.root, rootClassName)}>
       <SwitchBase
         icon={icon}
         classes={{
           default: classes.default,
-          checked: checkedClass,
+          colorPrimary: classes.colorPrimary,
+          colorSecondary: classes.colorSecondary,
+          checked: classes.checked,
           disabled: classes.disabled,
         }}
         checkedIcon={checkedIcon}

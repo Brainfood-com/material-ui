@@ -7,38 +7,23 @@ import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
-  default: {
-    color: theme.palette.text.secondary,
-  },
+  root: {},
+  default: {},
   checked: {},
-  checkedPrimary: {
-    color: theme.palette.primary.main,
-  },
-  checkedSecondary: {
-    color: theme.palette.secondary.main,
-  },
-  disabled: {
-    color: theme.palette.action.disabled,
-  },
+  colorPrimary: {},
+  colorSecondary: {},
+  disabled: {},
 });
 
 function Radio(props) {
-  const { classes, color, ...other } = props;
-  const checkedClass = classNames(classes.checked, {
-    [classes.checkedPrimary]: color === 'primary',
-    [classes.checkedSecondary]: color === 'secondary',
-  });
+  const { classes, ...other } = props;
 
   return (
     <SwitchBase
       type="radio"
       icon={<RadioButtonUncheckedIcon />}
       checkedIcon={<RadioButtonCheckedIcon />}
-      classes={{
-        default: classes.default,
-        checked: checkedClass,
-        disabled: classes.disabled,
-      }}
+      classes={classes}
       {...other}
     />
   );
